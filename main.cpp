@@ -57,7 +57,8 @@ int main(void)
         /* I figured we should do a for loop since it will be slowly twisting as it goes up.
         I asked Claude for how I can calculate the displacement for x and z coordinates based on i. - Hao Yu 11/19/26*/
         int i;
-        vector<Color> colors = {GREEN, RED, BLUE};
+        vector<Color> Lcolors = {GREEN, RED, BLUE};
+        vector<Color> Scolors = {RED, BLACK};
         const float degPerRung = 100.0f;                     // the degree that each segments rotate after each other
         const int rungEvery = 6;                             // strand segments per rung
         const float step = degPerRung * DEG2RAD / rungEvery; // radians per segment
@@ -72,9 +73,9 @@ int main(void)
             float z2 = 0 - r * sin(j);
             float y = 1 + i;
             float sph_size = 0.5;
-            DrawCylinderEx(Vector3{x1, y, z1}, Vector3{x2, y, z2}, .10, .10, 8, colors.at(i % 3));
-            DrawSphere(Vector3{x1, y, z1}, sph_size, colors.at(i % 3));
-            DrawSphere(Vector3{x2, y, z2}, sph_size, colors.at(i % 3));
+            DrawCylinderEx(Vector3{x1, y, z1}, Vector3{x2, y, z2}, .10, .10, 8, Lcolors.at(i % 3));
+            DrawSphere(Vector3{x1, y, z1}, sph_size, Scolors.at(i % 2));
+            DrawSphere(Vector3{x2, y, z2}, sph_size, Scolors.at(i % 2));
         }
 
         DrawGrid(10, 1.0f);
