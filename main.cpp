@@ -1,4 +1,3 @@
-#include "builder.h"
 #include "raylib.h"
 #include <iostream>
 #include <math.h> //this was needed for the calculation for the displacement for x and z (cos and sin), also from Claude - Hao Yu 11/19/26
