@@ -1,6 +1,7 @@
 // Authors: Hao Yu Vidal Huang Tan, Uziel Cruceta Duran, Luis Pineda
 // Date: 11/23/2026
 // CS 103 - Hackathon 2
+#include "DNAControls.h"
 #include "raylib.h"
 #include <iostream>
 #include <math.h> //this was needed for the calculation for the displacement for x and z (cos and sin), also from Claude - Hao Yu 11/19/26
@@ -84,7 +85,7 @@ int main(void) {
         float step = degPerRung * DEG2RAD / rungEvery; // radians per segment
         for (i = 0; i < steps; ++i) {
             int r = 2; // Radius, adjusts the length of the segments
-            float j = i * step;
+            float j = i * step + controls.angle;
             float x1 = 2 + r * cos(j);  // x-coordinate of first end
             float x2 = -2 - r * cos(j); // x-coordinate of other end
             float z1 = 0 + r * sin(j);  // same with z
