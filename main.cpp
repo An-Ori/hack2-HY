@@ -1,3 +1,6 @@
+// Authors: Hao Yu Vidal Huang Tan, Uziel Cruceta Duran, Luis Pineda
+// Date: 11/23/2026
+// CS 103 - Hackathon 2
 #include "raylib.h"
 #include <iostream>
 #include <math.h> //this was needed for the calculation for the displacement for x and z (cos and sin), also from Claude - Hao Yu 11/19/26
@@ -44,25 +47,21 @@ int main(void) {
         //----------------------------------------------------------------------------------
         UpdateCamera(&camera, CAMERA_FREE);
 
+        // asked claude why the adjustments to
+        // degPerRung is not showing and the text that
+        // displays it seemed to be displaying parts of
+        // the code in line 107 as of now - Hao Yu 11/23/26
         float WT = 0.1;
         if (IsKeyPressed(KEY_Z))
             camera.target = (Vector3){0.0f, 25.0f, 0.0f};
-        if (IsKeyDown(KEY_J)) { // asked claude why the adjustments to
-                                // degPerRung is not showing and the text that
-                                // displays it seemed to be displaying parts of
-                                // the code in line 107 as of now
+        if (IsKeyDown(KEY_J))
             degPerRung += 5;
-        }
-        if (IsKeyDown(KEY_L)) {
+        if (IsKeyDown(KEY_L))
             degPerRung -= 5;
-        }
-        if (IsKeyDown(KEY_I)) {
+        if (IsKeyDown(KEY_I))
             ++steps;
-        }
-        if (IsKeyDown(KEY_K)) {
+        if (IsKeyDown(KEY_K))
             --steps;
-        }
-
         //----------------------------------------------------------------------------------
 
         // Draw
