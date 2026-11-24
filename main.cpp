@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <math.h> //this was needed for the calculation for the displacement for x and z (cos and sin), also from Claude - Hao Yu 11/19/26
+#include "DNAControls.h" // Used to add interactive keyboard controls for rotation, pausing, and speed adjustment, with assistance from ChatGPT (OpenAI) - Luis Pineda 11/23/26
 using namespace std;
 
 int main(void)
@@ -29,11 +30,13 @@ int main(void)
 
     SetTargetFPS(60); // Set our game to run at 60 frames-per-second
     //--------------------------------------------------------------------------------------
+    DNAControls controls; // (Luis)
 
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
         // Update
+        controls.Update(); // (Luis)
         //----------------------------------------------------------------------------------
         UpdateCamera(&camera, CAMERA_FREE);
 
@@ -66,7 +69,7 @@ int main(void)
         for (i = 0; i < steps; ++i)
         {
             int r = 2; // Radius, adjusts the length of the segments
-            float j = i * step;
+            float j = i * step + controls.angle; // (Luis)
             float x1 = 2 + r * cos(j);  // x-coordinate of first end
             float x2 = -2 - r * cos(j); // x-coordinate of other end
             float z1 = 0 + r * sin(j);  // same with z
@@ -81,6 +84,7 @@ int main(void)
         DrawGrid(10, 1.0f);
 
         EndMode3D();
+        controls.DrawPanel(); // (Luis)
 
         DrawRectangle(10, 10, 320, 93, Fade(SKYBLUE, 0.5f));
         DrawRectangleLines(10, 10, 320, 93, BLUE);
