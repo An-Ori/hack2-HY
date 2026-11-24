@@ -40,11 +40,13 @@ int main(void) {
     const int rungEvery = 6; // strand segments per rung
     int steps = 50;
     //--------------------------------------------------------------------------------------
+    DNAControls controls; // (Luis)
 
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
         // Update
+        controls.Update(); // (Luis)
         //----------------------------------------------------------------------------------
         UpdateCamera(&camera, CAMERA_FREE);
 
@@ -85,7 +87,7 @@ int main(void) {
         float step = degPerRung * DEG2RAD / rungEvery; // radians per segment
         for (i = 0; i < steps; ++i) {
             int r = 2; // Radius, adjusts the length of the segments
-            float j = i * step + controls.angle;
+            float j = i * step + controls.angle; // (Luis)
             float x1 = 2 + r * cos(j);  // x-coordinate of first end
             float x2 = -2 - r * cos(j); // x-coordinate of other end
             float z1 = 0 + r * sin(j);  // same with z
@@ -101,6 +103,7 @@ int main(void) {
         DrawGrid(10, 1.0f);
 
         EndMode3D();
+        controls.DrawPanel(); // (Luis)
 
         DrawRectangle(10, 10, 320, 170, Fade(SKYBLUE, 0.5f));
         DrawRectangleLines(10, 10, 320, 170, BLUE);
