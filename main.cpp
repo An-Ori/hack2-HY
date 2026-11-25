@@ -8,7 +8,7 @@
 #include <vector>
 
 using namespace std;
-
+/* the following 3d camera method is from raylibs 3d camera view by Ramon Santamaria (@raysan5) which we wanted to use as the base for our idea, with the shape we draw becoming different */
 int main(void)
 {
     // Initialization
