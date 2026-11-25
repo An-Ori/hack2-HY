@@ -9,9 +9,12 @@
 
 using namespace std;
 
-int main(void) {
+int main(void)
+{
     // Initialization
     //--------------------------------------------------------------------------------------
+    DNAControls controls;
+
     const int screenWidth = 800;
     const int screenHeight = 450;
 
@@ -23,8 +26,8 @@ int main(void) {
     camera.position = (Vector3){10.0f, 10.0f, 10.0f}; // Camera position
     camera.target = (Vector3){0.0f, 0.0f, 0.0f};      // Camera looking at point
     camera.up = (Vector3){0.0f, 1.0f,
-                          0.0f}; // Camera up vector (rotation towards target)
-    camera.fovy = 45.0f;         // Camera field-of-view Y
+                          0.0f};            // Camera up vector (rotation towards target)
+    camera.fovy = 45.0f;                    // Camera field-of-view Y
     camera.projection = CAMERA_PERSPECTIVE; // Camera projection type
 
     Vector3 cubePosition = {0.0f, 0.0f, 0.0f};
@@ -36,7 +39,7 @@ int main(void) {
     vector<Color> Lcolors = {GREEN, RED, BLUE};
     vector<Color> Scolors = {RED, BLACK};
     float degPerRung =
-        100.0f; // the degree that each segments rotate after each other
+        100.0f;              // the degree that each segments rotate after each other
     const int rungEvery = 6; // strand segments per rung
     int steps = 50;
     //--------------------------------------------------------------------------------------
@@ -63,6 +66,7 @@ int main(void) {
             ++steps;
         if (IsKeyDown(KEY_K))
             --steps;
+        controls.Update();
         //----------------------------------------------------------------------------------
 
         // Draw
@@ -83,7 +87,8 @@ int main(void) {
         x and z coordinates based on i. - Hao Yu 11/19/26*/
         int i;
         float step = degPerRung * DEG2RAD / rungEvery; // radians per segment
-        for (i = 0; i < steps; ++i) {
+        for (i = 0; i < steps; ++i)
+        {
             int r = 2; // Radius, adjusts the length of the segments
             float j = i * step + controls.angle;
             float x1 = 2 + r * cos(j);  // x-coordinate of first end
@@ -116,6 +121,7 @@ int main(void) {
                  DARKGRAY);
         DrawText(TextFormat("- Steps: %d", steps), 40, 160, 10, DARKGRAY);
 
+        controls.DrawPanel();
         EndDrawing();
         //----------------------------------------------------------------------------------
     }

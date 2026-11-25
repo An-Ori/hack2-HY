@@ -41,15 +41,17 @@ void DNAControls::DrawPanel() const {
     if (!showHelp)
         return;
 
-    DrawRectangle(10, 110, 310, 150, Fade(LIGHTGRAY, 0.9f));
+    int k = 80;
+    DrawRectangle(10, 110 + k, 320, 150, Fade(LIGHTGRAY, 0.9f));
+    DrawRectangleLines(10, 110 + k, 320, 150, GRAY);
 
-    DrawText("DNA INTERACTIVE CONTROLS", 20, 120, 18, BLACK);
+    DrawText("DNA INTERACTIVE CONTROLS", 20, 120 + k, 18, BLACK);
 
-    DrawText("R - Start/Stop Rotation", 20, 150, 16, DARKGRAY);
+    DrawText("R - Start/Stop Rotation", 20, 150 + k, 16, DARKGRAY);
 
-    DrawText("SPACE - Pause/Resume", 20, 175, 16, DARKGRAY);
+    DrawText("SPACE - Pause/Resume", 20, 175 + k, 16, DARKGRAY);
 
-    DrawText("UP/DOWN - Change Speed", 20, 200, 16, DARKGRAY);
+    DrawText("UP/DOWN - Change Speed", 20, 200 + k, 16, DARKGRAY);
 
-    DrawText("H - Hide/Show Controls", 20, 225, 16, DARKGRAY);
+    DrawText("H - Hide/Show Controls", 20, 225 + k, 16, DARKGRAY);
 }
